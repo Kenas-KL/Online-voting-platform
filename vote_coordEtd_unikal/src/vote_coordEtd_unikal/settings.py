@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-))elhidzlx4tv2)05m5qw@^l*i!vii4%8iftg*ct40p2dj-vk5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['plateform-de-vote.onrender.com']
+ALLOWED_HOSTS = ['plateforme-de-vote.onrender.com']
 
 
 # Application definition
@@ -132,4 +132,5 @@ MEDIA_ROOT = 'mediafiles/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
