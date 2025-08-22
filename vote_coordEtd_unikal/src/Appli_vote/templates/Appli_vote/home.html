@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+   <div class="cntr d-col gp-10p">
+    <div class="main cntr gp-10p s-even rsp-display">
+        <div class="gp-10p cntr d-col">
+            <h1>Votez pour vos representants!</h1>
+            <small>une plateforme simple, rapide et sécurisée.</small>
+            <a href="{% url 'Appli_vote:election' %}" class="link-vote pd-10p rds-5p">Election</a>
+        </div>
+        <img src="{% static "img/img_.jpg" %}" class="img">
+    </div>
+    <div class="cntr lft d-col h- gp-10p bg-w w-100 pd-10p h-20">
+        <h3>A propos</h3>
+        <p>Cette plateforme permet aux etudiants de l'université de Kalemie de voter en ligne pour leurs representants.</p>
+    </div>
+{% endblock %}

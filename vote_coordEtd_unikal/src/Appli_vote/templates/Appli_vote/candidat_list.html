@@ -1,0 +1,143 @@
+    {% extends "base.html" %}
+    {% load static %}
+    {% block title %}Ma Page{% endblock %}
+    {% block content %}
+    <div class="cntr d-col w-100">
+        <div class="cntr d-col w-100 gp-10p">
+            <div class="cntr shdw rds-10p pd-10p gp-10p w-100 d-col h-700p">
+                <h3>Candidats au poste de Coordinateur(trice)</h3>
+                <div class="d-flex bdr rds-5p pd-10p gp-10p scroll-x w-100">
+                    {% for candidat in coords  %}
+                        <div class="cntr d-col h-100 pd-10p">
+                            {% if candidat.thumbnail %}
+                            <img src="{{ candidat.thumbnail.url }}" alt="" class="img-candidate">
+                            {% endif %}
+                            <h4>{{candidat.name}} | {{candidat.prom}}</h4>
+                            <small>Numéro: {{ candidat.num_candidat }}</small>
+                            <a href="{% url 'Appli_vote:detail' pk=candidat.pk %}" class="btn">Voir plus</a>
+                        </div> 
+                    {% endfor %}
+                    {% if not coords %}
+                        <small>Aucun candidat sur ce poste</small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="cntr shdw rds-10p pd-10p gp-10p w-100 d-col h-700p">
+                <h3>Candidats au poste de Vice-Coordinateur(trice)</h3>
+                <div class="d-flex bdr rds-5p pd-10p gp-10p scroll-x w-100">
+                    {% for candidat in vcords  %}
+                        <div class="cntr d-col h-100 pd-10p">
+                            {% if candidat.thumbnail %}
+                            <img src="{{ candidat.thumbnail.url }}" alt="" class="img-candidate">
+                            {% endif %}                            <h4>{{candidat.name}} | {{candidat.prom}}</h4>
+                            <small>Numéro: {{ candidat.num_candidat }}</small>
+                            <a href="{% url 'Appli_vote:detail' pk=candidat.pk %}" class="btn">Voir plus</a>
+                        </div> 
+                    {% endfor %}
+                    {% if not vcords %}
+                        <small>Aucun candidat sur ce poste</small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="cntr shdw rds-10p pd-10p gp-10p w-100 d-col h-700p">
+                <h3>Candidats au poste de Sécretaire</h3>
+                <div class="d-flex bdr rds-5p pd-10p gp-10p scroll-x w-100">
+                    {% for candidat in secretaires  %}
+                        <div class="cntr d-col h-100 pd-10p">
+                            {% if candidat.thumbnail %}
+                            <img src="{{ candidat.thumbnail.url }}" alt="" class="img-candidate">
+                            {% endif %}                            <h4>{{candidat.name}} | {{candidat.prom}}</h4>
+                            <small>Numéro: {{ candidat.num_candidat }}</small>
+                            <a href="{% url 'Appli_vote:detail' pk=candidat.pk %}" class="btn">Voir plus</a>
+                        </div> 
+                    {% endfor %}
+                    {% if not secretaires %}
+                        <small>Aucun candidat sur ce poste</small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="cntr shdw rds-10p pd-10p gp-10p w-100 d-col h-700p">
+                <h3>Candidats au poste de Trésorier(e)</h3>
+                <div class="d-flex bdr rds-5p pd-10p gp-10p scroll-x w-100">
+                    {% for candidat in tresoriers  %}
+                        <div class="cntr d-col h-100 pd-10p">
+                            {% if candidat.thumbnail %}
+                            <img src="{{ candidat.thumbnail.url }}" alt="" class="img-candidate">
+                            {% endif %}
+                            <h4>{{candidat.name}} | {{candidat.prom}}</h4>
+                            <small>Numéro: {{ candidat.num_candidat }}</small>
+                            <a href="{% url 'Appli_vote:detail' pk=candidat.pk %}" class="btn">Voir plus</a>
+                        </div> 
+                    {% endfor %}
+                    {% if not tresoriers %}
+                        <small>Aucun candidat sur ce poste</small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="cntr shdw rds-10p pd-10p gp-10p w-100 d-col h-700p">
+                <h3>Candidats au poste de Chargé(e) de la communication</h3>
+                <div class="d-flex bdr rds-5p pd-10p gp-10p scroll-x w-100">
+                    {% for candidat in cc  %}
+                        <div class="cntr d-col h-100 pd-10p">
+                            {% if candidat.thumbnail %}
+                            <img src="{{ candidat.thumbnail.url }}" alt="" class="img-candidate">
+                            {% endif %}
+                            <h4>{{candidat.name}} | {{candidat.prom}}</h4>
+                            <small>Numéro: {{ candidat.num_candidat }}</small>
+                            <a href="{% url 'Appli_vote:detail' pk=candidat.pk %}" class="btn">Voir plus</a>
+                        </div> 
+                    {% endfor %}
+                    {% if not cc %}
+                        <small>Aucun candidat sur ce poste</small>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'Appli_vote:resultat' 0 %}">voir le resultat</a> 
+        </div>     
+        {% comment %} {% if no_vote %}
+            <small><a href="clr">Participer aux élections</a></small>
+        {% else %}
+            <button onclick="openPopup()" class="link-vote rds-30p pd-10p cntr txt-btn">Voter</button>
+        {% endif %} {% endcomment %}
+        {% if status == 'before' %}
+            <h4>L'élection n'a pas encore commencé.</h4>
+        {% endif %}
+        {% if status == 'in_' %}
+            <button onclick="openPopup()" class="link-vote rds-30p pd-10p cntr txt-btn">Voter</button>
+            <small>Election en cours...</small>
+        {% endif %}
+        {% if status == 'after' %}
+            <h4>L'élection est terminée.</h4>
+        {% endif %}
+        {% if status == 'not' %}
+            <h4>Aucune élection actuellement.</h4>
+        {% endif %}
+        <div id="popup-container" class="popup">
+            <h3>Votre choix de vote</h3>
+            <div class="cntr">
+                <form action="voter/" method="post" class="cntr d-col pd-10p">
+                {% csrf_token %}
+                <label for="mat">Entrez votre numéro matricule</label>
+                <input type="text" name='mat' required>
+                <hr>
+                <label for="coordonnateur" >coordonnateur</label>
+                <input type="number" name='c' required>
+                <label for="vice-coordonnateur">vice-coordonnateur</label>
+                <input type="number" name='vc' required>
+                <label for="secretaire">secretaire</label>
+                <input type="number" name='s' required>
+                <label for="tresorier">tresorier</label>
+                <input type="number" name='t' required>
+                <label for="charge de communication">charge de communication</label>
+                <input type="number" name='cc' required>
+                <br>
+                <input type="submit" value="Soumettre le vote" class="btn pd-10p">
+                </form>
+            </div>
+            <button onclick="closePopup()" class="link-vote rds-30p pd-10p cntr txt-btn">Fermer</button>
+        </div>
+        <div id="overlay" class="overlay"></div>
+        </div>
+        <script src="{% static 'js/popup.js' %}"></script>
+    {% endblock %}
+    

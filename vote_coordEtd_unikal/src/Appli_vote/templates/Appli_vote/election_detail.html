@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}resultat{% endblock %}
+{% block content %}
+    <div class="cntr d-col rds-5p pd-10p gp-10p">
+        <h1>Election {{ election.year }}</h1>
+        {% if election.thumbnail %}
+        <div class="cntr d-col rds-10p gp-10p w-100">
+            {% if election.thumbnail %}
+            <img src="{{ election.thumbnail.url }}" alt="" class='img-c'>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="cntr">
+            {% if election.begin <= timenow  and timenow <= election.end %}
+                <a href="{% url 'Appli_vote:cands_last' %}" class="link-vote rds-30p pd-10p cntr ">Participer</a>
+            {% elif election.begin > timenow %}
+                <a href="{% url 'Appli_vote:candidats' election.pk %}" class="link-vote rds-30p pd-10p cntr">Voir les candidats</a>
+            {% elif timenow > election.end %}
+                <div class="cntr d-col gp-10p">
+                    <a href="{% url 'Appli_vote:publish' election.pk %}" class="btn">Proces verbal de publication</a>
+                    <a href="{% url 'Appli_vote:resultat' election.pk %}" class="link-vote rds-30p pd-10p cntr">Resultat de l'élection</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="adapt shdw rds-5p gp-50p w-100 bdr">
+            <div class="cntr">
+                <ul>
+                    <li>Debut: {{ election.begin }}</li>
+                    <li>Fin: {{ election.end }}</li>
+                </ul>
+            </div>
+            <p>{{ election.detail }}</p>
+        </div>
+    </div>
+    
+{% endblock %}

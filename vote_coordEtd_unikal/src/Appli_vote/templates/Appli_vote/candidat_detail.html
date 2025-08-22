@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Details sur {{candidat.name}}{% endblock %}
+{% block content %}
+<div class="cntr ">
+    {% comment %} <a href="{% url 'Appli_vote:Accueil' %}">back</a> {% endcomment %}
+</div>
+<div class="cntr d-col shdw mg-10p rds-5p h-100vh">
+    <h2>Candidat(e)</h2>
+    <div class="cntr rsp-display">
+        <div class="cntr d-col">
+            {% if candidat.thumbnail %}
+            <img src="{{ candidat.thumbnail.url }}" alt="" class="img-c"> 
+            {% endif %}
+            <h3>{{candidat.name}}</h3>
+        </div>
+        <ul>
+            <li>Faculte: {{candidat.fac}} </li>
+            <li>Promotion: {{candidat.prom}} </li>
+            <li>Description: {{candidat.description}}</li>
+            <li>Numéro: {{candidat.num_candidat}}</li>
+            <li>Poste: {{candidat.poste}}</li>
+        </ul>
+    </div>
+    
+
+</div>
+    
+{% endblock %}

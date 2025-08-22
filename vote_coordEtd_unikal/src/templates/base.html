@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Plateforme de Vote</title>
+    <link rel="stylesheet" type="text/css" target="_blank" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <div class="">
+            <h4>PLATEFORME DE VOTE</h3>
+            <small>Coordination des etudiants</small>
+        </div>
+      </div>
+      <ul>
+        <li><a href="{% url 'Appli_vote:accueil' %}">Accueil</a></li>
+        <li><a href="{% url 'Appli_vote:resultat' 0 %}">Resultats</a></li>
+        <li><a href="{% url 'Appli_vote:cands_last' %}">Candidats</a></li>
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        {% else %}
+          <li><a href="{% url 'admin:index' %}">Se connecter</a></li>
+        {% endif %}
+      </ul>
+      <div class="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </nav>
+    <div class="menubar">
+        <ul>
+            <li><a href="{% url 'Appli_vote:accueil' %}" class="clr">Accueil</a></li>
+            <li><a href="{% url 'Appli_vote:resultat' 0 %}" class="clr">Resultats</a></li>
+            <li><a href="{% url 'Appli_vote:cands_last' %}" class="clr">Candidats</a></li>
+            {% if request.user.is_authenticated %}
+              <li><a href="{% url 'admin:index' %}" class="clr">Admin</a></li>
+            {% else %}
+              <li><a href="{% url 'admin:index' %}" class="clr">Se connecter</a></li>
+            {% endif %}
+            
+        </ul>
+    </div>
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="cntr">
+            <small>Une plateforme gérée par la commission electorale independante de l'universite de Kalemie</small>
+        </div>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

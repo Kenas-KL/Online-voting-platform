@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Résultats{% endblock %}
+{% block content %}
+    <div class="cntr d-col rds-5p pd-10p gp-10p">
+        <h1>Résultats de l'élection {{ year }}</h1>
+        <div class="card">
+            <h2><span id="part-num">{{ part_num }}</span>/<span id="electeurs">{{ electeurs }}</span> électeurs ont voté</h2>
+            <h3>Participation des électeurs</h3>
+            <div class="progress-circle-container">
+                <div class="progress-circle" data-percentage="70">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring-background" stroke="#e6e6e6" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                        <circle class="progress-ring-circle" stroke="#0de48aff" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" transform="rotate(-90 60 60)"/>
+                    </svg>
+                    <span class="progress-text">5%</span>
+                </div>
+            </div>
+        </div>
+        <div class="adapt shdw rds-5p gp-50p w-100 bdr">
+            {% for candidat in candidats %}
+                {% if candidat.poste == 'coordo' %}
+                <div class="d-flex shdw rds-10p d-col pd-10p w-100 card">
+                    <h3>{{ candidat.name }}</h3>
+                    <small>Coordonateur(rice)</small>
+                    <small>Numéro: {{ candidat.num_candidat }}</small>
+                    <div class="vote-count">{{ candidat.nb_votes }}/{{ part_num }} particitapant(s)</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-percentage="25">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-label">60%</span>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="adapt shdw rds-5p gp-50p w-100 bdr">
+            {% for candidat in candidats %}
+                {% if candidat.poste == 'vice-cordo' %}
+                <div class="d-flex shdw rds-10p d-col pd-10p w-100 card">
+                    <h3>{{ candidat.name }}</h3>
+                    <small>Vice-Coordonnateur(rice) des Etudiants</small>
+                    <small>Numéro: {{ candidat.num_candidat }}</small>
+                    <div class="vote-count">{{ candidat.nb_votes }}/{{ part_num }} particitapant(s)</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-percentage="25">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-label">60%</span>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="adapt shdw rds-5p gp-50p w-100 bdr">
+            {% for candidat in candidats %}
+                {% if candidat.poste == 'sec' %}
+                <div class="d-flex shdw rds-10p d-col pd-10p w-100 card">
+                    <h3>{{ candidat.name }}</h3>
+                    <small>Sécretaire de la Coordination</small>
+                    <small>Numéro: {{ candidat.num_candidat }}</small>
+                    <div class="vote-count">{{ candidat.nb_votes }}/{{ part_num }} particitapant(s)</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-percentage="25">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-label">60%</span>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="adapt shdw rds-5p gp-50p w-100 bdr">
+            {% for candidat in candidats %}
+                {% if candidat.poste == 'tresorier' %}
+                <div class="d-flex shdw rds-10p d-col pd-10p w-100 card">
+                    <h3>{{ candidat.name }}</h3>
+                    <small>Trésorier de la Coordination</small>
+                    <small>Numéro: {{ candidat.num_candidat }}</small>
+                    <div class="vote-count">{{ candidat.nb_votes }}/{{ part_num }} particitapant(s)</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-percentage="25">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-label">60%</span>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="adapt shdw rds-5p gp-50p w-100 bdr">
+            {% for candidat in candidats %}
+                {% if candidat.poste == 'cc' %}
+                <div class="d-flex shdw rds-10p d-col pd-10p w-100 card">
+                    <h3>{{ candidat.name }}</h3>
+                    <small>Chargé de Communication de la Coordination</small>
+                    <small>Numéro: {{ candidat.num_candidat }}</small>
+                    <div class="vote-count">{{ candidat.nb_votes }}/{{ part_num }} particitapant(s)</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" data-percentage="25">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-label">60%</span>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{% static 'js/stats.js' %}"></script>
+{% endblock %}

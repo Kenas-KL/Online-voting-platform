@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% comment %} {% block title %}Election{% endblock %} {% endcomment %}
+{% block content %}
+    <div class="cntr d-col">
+        {% for election in elections %}
+            <div class="cntr gp-10p shdw rds-10p pd-10p w-100 s-even rsp-display">
+            <a href="{% url 'Appli_vote:election_detail' pk=election.pk %}" class="clr"><h3>Election {{ election.year }}</h3></a>
+                {% if not election.end < timenow  and election.begin <= timenow  %}
+                    <a href="{% url 'Appli_vote:cands_last' %}" class="link-vote rds-30p pd-10p cntr ">Participer</a>
+                {% endif %}
+            </div> 
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

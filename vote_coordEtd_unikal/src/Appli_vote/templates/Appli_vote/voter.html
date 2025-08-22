@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}vote effectué{{candidat.name}}{% endblock %}
+{% block content %}
+<div class="cntr d-col">
+{% if not error_mat %}
+
+    {% if not voted %}
+
+        {% if not error_num %}
+        <h3>Excellent le vote a été effectué avec succès!</h3>
+        <p>Vos candidats sont :</p> 
+        <ul>
+            <li>Coordonnateur: {{ c.name}} N°{{c.num_candidat}}</li>
+            <li>Vice-coordonnateur: {{ vc.name }} N°{{vc.num_candidat}}</li>
+            <li>Secretaire: {{ s.name }} N°{{s.num_candidat}}</li>
+            <li>Tresorier: {{ t.name }} N°{{t.num_candidat}}</li>
+            <li>Charge de communication: {{ cc.name }} N°{{cc.num_candidat}}</li>
+        </ul>
+        {% else %}
+            <p>Veuillez entrer le numero du candidat valide</p>
+        {% endif %}
+
+    {% else %}
+        <p>vous aviez déjà soumis le vote</p>
+    {% endif %}
+ {% else %}
+    <p>Matricule incorrecte</p>
+
+{% endif %}   
+
+</div>
+{% endblock %}

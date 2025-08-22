@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+    <div class="cntr">
+        <div class="cntr d-col p-10p gp-10p w-80">
+            <div class="cntr">
+                <h2>Commision électorale independante de l'université de Kalemie </h2>
+                <img src="{% static 'img/unikal.jpg' %}" alt="" class="publish">
+            </div>  
+            <div class="cntr shdw d-col pd-10p rds-5p">
+                A l'issu de ces elections libre et démocratique sont donc proclamés élus membres de la coordination des etudiants en regard de leurs noms:
+                <div class="d-col gp-10p">
+                    <h4>{{ coord.name }} en qualité de : Coordonateur(trice) des étudiants</h4>
+                    <h4>{{ vcoord.name }} en qualité de : Vice-Coordonateur(trice) des étudiants</h4>
+                    <h4>{{ sec.name }} en qualité de : Sécretaire</h4>
+                    <h4>{{ tres.name }} en qualité de : Trésorier(e)</h4>
+                    <h4>{{ cc.name }} en qualité de : Chargé(e) de communication</h4>
+                </div>
+                <br>
+                Fait à Kalemie le {{ time }}            
+            </div>
+
+        </div>
+    </div>
+    
+{% endblock %}
+
+
