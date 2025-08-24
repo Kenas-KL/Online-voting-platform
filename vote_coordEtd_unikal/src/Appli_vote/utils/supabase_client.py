@@ -1,0 +1,6 @@
+from supabase import create_client
+
+SUPABASE_URL = "https://ndutccqrlohlqtplpada.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kdXRjY3FybG9obHF0cGxwYWRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5OTc1NTcsImV4cCI6MjA3MTU3MzU1N30.-rgJxJ1zJihBMWzkXrLTUw3R5gvnRSDmZqAppzEwQyQ"
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
